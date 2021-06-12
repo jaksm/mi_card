@@ -25,11 +25,17 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.teal,
       body: SafeArea(
-        child: Container(
-          color: Colors.white,
-          padding: EdgeInsets.all(50),
-          margin: EdgeInsets.all(20),
-          child: Text('Hello World'),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              CircleAvatar(
+                radius: 60,
+                backgroundImage: AssetImage('assets/images/jaksa.jpeg'),
+                backgroundColor: Colors.white,
+              ),
+            ],
+          ),
         ),
       ),
     );
