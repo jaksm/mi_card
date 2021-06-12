@@ -10,9 +10,20 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Jaksm MiCard',
       theme: ThemeData(
-        primarySwatch: Colors.teal,
-        fontFamily: 'JetBrainsMono',
-      ),
+          primarySwatch: Colors.teal,
+          fontFamily: 'JetBrainsMono',
+          cardColor: Colors.transparent,
+          iconTheme: IconThemeData(
+            color: Colors.white,
+          ),
+          cardTheme: CardTheme(
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(16),
+                side: BorderSide(
+                  color: Colors.white,
+                  width: 2,
+                )),
+          )),
       home: HomeScreen(),
     );
   }
@@ -88,6 +99,47 @@ class Content extends StatelessWidget {
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 16,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            SizedBox(
+              width: 64,
+              child: Divider(
+                height: 48,
+                thickness: 2,
+                color: Colors.white,
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.symmetric(vertical: 32),
+              padding: EdgeInsets.symmetric(horizontal: 32),
+              child: Column(
+                children: [
+                  Card(
+                    child: ListTile(
+                      leading: Icon(
+                        Icons.phone_outlined,
+                        color: Colors.white,
+                      ),
+                      title: Text(
+                        '+381604447002',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
+                  ),
+                  Card(
+                    child: ListTile(
+                      leading: Icon(
+                        Icons.mail_outline,
+                        color: Colors.white,
+                      ),
+                      title: Text(
+                        'jaksa.malisic@gmail.com',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
+                  ),
+                ],
               ),
             )
           ],
