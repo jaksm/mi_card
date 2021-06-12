@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 void main() {
   runApp(MyApp());
@@ -67,6 +68,20 @@ class HomeScreen extends StatelessWidget {
 class Content extends StatelessWidget {
   const Content({Key? key}) : super(key: key);
 
+  final String name = 'Jakša Mališić';
+  final String title = 'Mobile App Developer';
+  final String phone = '+381604447002';
+  final String email = 'jaksa.malisic@gmail.com';
+
+  void _launchURL({required String scheme, required String path}) async {
+    String url = Uri(
+      scheme: scheme,
+      path: path,
+    ).toString();
+
+    await canLaunch(url) ? await launch(url) : throw 'Cannot launch $url';
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -87,7 +102,7 @@ class Content extends StatelessWidget {
               height: 16,
             ),
             Text(
-              'Jakša Mališić',
+              this.name,
               style: TextStyle(
                 color: Colors.white,
                 fontFamily: 'Oi',
@@ -95,7 +110,7 @@ class Content extends StatelessWidget {
               ),
             ),
             Text(
-              'Mobile App Developer',
+              this.title,
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 16,
@@ -113,28 +128,32 @@ class Content extends StatelessWidget {
             Container(
               margin: EdgeInsets.symmetric(vertical: 32),
               padding: EdgeInsets.symmetric(horizontal: 32),
+              constraints: BoxConstraints(maxWidth: 500),
               child: Column(
                 children: [
                   Card(
                     child: ListTile(
+                      onTap: () => _launchURL(scheme: 'tel', path: this.phone),
                       leading: Icon(
                         Icons.phone_outlined,
                         color: Colors.white,
                       ),
                       title: Text(
-                        '+381604447002',
+                        this.phone,
                         style: TextStyle(color: Colors.white),
                       ),
                     ),
                   ),
                   Card(
                     child: ListTile(
+                      onTap: () =>
+                          _launchURL(scheme: 'mailto', path: this.email),
                       leading: Icon(
                         Icons.mail_outline,
                         color: Colors.white,
                       ),
                       title: Text(
-                        'jaksa.malisic@gmail.com',
+                        this.email,
                         style: TextStyle(color: Colors.white),
                       ),
                     ),
